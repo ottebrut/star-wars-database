@@ -1,4 +1,5 @@
 export interface PeopleApiResponse {
+  count: number;
   results: {
     name: string;
     url: string;

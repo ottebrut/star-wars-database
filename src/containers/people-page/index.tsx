@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import PeopleList from "src/containers/people-page/people-list";
+import PeopleNavigation from "src/containers/people-page/people-navigation";
 import usePeople from "src/containers/people-page/use-people";
 import withErrorApi, {
   WithErrorApiViewProps,
@@ -9,11 +11,20 @@ import withErrorApi, {
 interface PeoplePageProps extends WithErrorApiViewProps {}
 
 const PeoplePage: React.FC<PeoplePageProps> = ({ setErrorApi }) => {
-  const { people } = usePeople({ setErrorApi });
+  const [searchParams] = useSearchParams();
+  const queryPage = searchParams.get("page");
+  const page = queryPage ? parseInt(queryPage) : 1;
+  const [maxPage, setMaxPage] = useState(1);
+
+  const { people } = usePeople({
+    setErrorApi,
+    page,
+    setMaxPage,
+  });
 
   return (
     <>
-      <h1 className="header__text">People</h1>
+      <PeopleNavigation page={page} maxPage={maxPage} />
       <PeopleList people={people} />
     </>
   );

@@ -46,6 +46,11 @@ h1 {
 button {
   border: none;
   outline: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 ul {
