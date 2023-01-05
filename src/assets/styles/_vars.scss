@@ -1,13 +1,27 @@
 :root {
   --color-white: #fff;
-  --color-black: #10100e;
-  --color-dark-grey: #1a1a1a;
+  --color-black: #000;
+  --color-dark-grey: #10100e;
   --color-yellow: #ff0;
+  --color-blue: #6f83fb;
+  --color-violet: #ae72c2;
 
+  --width-max: 1200px;
   --spacing-medium: 20px;
+  --spacing-large: 30px;
+
+  --font-family-main: -apple-system, system-ui, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  --font-size-main: 16px;
+  --font-size-header: 26px;
+  --font-weight-bold: 600;
+  --text-shadow-yellow:
+    0 0 2px var(--color-white),
+    0 0 40px var(--color-blue);
 
   --border-radius-small: 3px;
 
-  --font-family-main: -apple-system, system-ui, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
-  --font-size-header: 26px;
+  --transition: 0.4s;
+
+  --theme-default-header: #cccc46;
+  --theme-default-bgimage: url("src/assets/images/bg.webp");
 }
