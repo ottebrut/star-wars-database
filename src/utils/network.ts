@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export async function getApiResponse<T>(url: string): Promise<T | false> {
   try {
     const res = await fetch(url);
@@ -8,7 +7,7 @@ export async function getApiResponse<T>(url: string): Promise<T | false> {
     }
     return (await res.json()) as T;
   } catch (err) {
-    console.log("Could not fetch:", err);
+    console.error("Could not fetch:", err);
     return false;
   }
 }

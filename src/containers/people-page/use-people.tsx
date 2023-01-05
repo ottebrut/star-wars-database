@@ -2,9 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 
 import { GUIDE_PERSON_IMG, SWAPI_PEOPLE } from "src/constants/api";
 import { People, PeopleApiResponse } from "src/containers/people-page/models";
+import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
 import { getApiResponse } from "src/utils/network";
 
-export default function usePeople(): {
+interface UsePeopleProps extends WithErrorApiViewProps {}
+
+export default function usePeople({ setErrorApi }: UsePeopleProps): {
   people: People | null;
 } {
   const [people, setPeople] = useState<People | null>(null);
@@ -18,8 +21,11 @@ export default function usePeople(): {
           return { name, id, img: getPersonImage(id) };
         })
       );
+      setErrorApi(false);
+    } else {
+      setErrorApi(true);
     }
-  }, []);
+  }, [setErrorApi]);
 
   useEffect(() => {
     getPeopleData();

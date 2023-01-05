@@ -2,21 +2,12 @@
   --color-white: #fff;
   --color-black: #10100e;
   --color-dark-grey: #1a1a1a;
+  --color-yellow: #ff0;
 
   --spacing-medium: 20px;
 
   --border-radius-small: 3px;
 
-  --font-family-main:
-    -apple-system,
-    blinkmacsystemfont,
-    "Segoe UI",
-    roboto,
-    oxygen,
-    ubuntu,
-    cantarell,
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
-    sans-serif;
+  --font-family-main: -apple-system, system-ui, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  --font-size-header: 26px;
 }
