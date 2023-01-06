@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import PersonFilms from "src/containers/person-page/person-films";
 import PersonInfo from "src/containers/person-page/person-info";
 import PersonLinkBack from "src/containers/person-page/person-link-back";
 import PersonPhoto from "src/containers/person-page/person-photo";
@@ -17,7 +18,10 @@ interface PersonPageProps extends WithErrorApiViewProps {}
 const PersonPage: React.FC<PersonPageProps> = ({ setErrorApi }) => {
   const { id } = useParams();
   const personImageSrc = getPersonImage(id!);
-  const { personInfo, personName } = usePersonData({ id: id!, setErrorApi });
+  const { personInfo, personName, personFilms } = usePersonData({
+    id: id!,
+    setErrorApi,
+  });
 
   return (
     <>
@@ -28,7 +32,8 @@ const PersonPage: React.FC<PersonPageProps> = ({ setErrorApi }) => {
 
         <div className={styles["person__data-container"]}>
           <PersonPhoto src={personImageSrc} />
-          {personInfo && <PersonInfo personInfo={personInfo} />}
+          {personInfo && <PersonInfo info={personInfo} />}
+          {personFilms && <PersonFilms filmsUrls={personFilms} />}
         </div>
       </div>
     </>

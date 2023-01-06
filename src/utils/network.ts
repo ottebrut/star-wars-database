@@ -1,6 +1,6 @@
 export async function getApiResponse<T>(url: string): Promise<T | false> {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url.replace("http:", "https:"));
     if (!res.ok) {
       console.error("Could not fetch:", res.status);
       return false;
@@ -10,4 +10,8 @@ export async function getApiResponse<T>(url: string): Promise<T | false> {
     console.error("Could not fetch:", err);
     return false;
   }
+}
+
+export function getApiResponses<T>(urls: string[]): Promise<(T | false)[]> {
+  return Promise.all(urls.map((url) => getApiResponse<T>(url)));
 }

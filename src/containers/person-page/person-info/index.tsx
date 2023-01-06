@@ -5,14 +5,14 @@ import { IPersonInfo } from "src/containers/person-page/models";
 import styles from "./styles.module.scss";
 
 interface PersonInfoProps {
-  personInfo: IPersonInfo;
+  info: IPersonInfo;
 }
 
-const PersonInfo: React.FC<PersonInfoProps> = ({ personInfo }) => {
+const PersonInfo: React.FC<PersonInfoProps> = ({ info }) => {
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list}>
-        {personInfo.map(
+        {info.map(
           ({ label, data }) =>
             data && (
               <li className={styles.list__item} key={label}>

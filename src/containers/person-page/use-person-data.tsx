@@ -18,9 +18,11 @@ export default function usePersonData({
 }: UsePersonDataProps): {
   personInfo: IPersonInfo | null;
   personName: string | null;
+  personFilms: string[] | null;
 } {
   const [personInfo, setPersonInfo] = useState<IPersonInfo | null>(null);
   const [personName, setPersonName] = useState<string | null>(null);
+  const [personFilms, setPersonFilms] = useState<string[] | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -36,6 +38,9 @@ export default function usePersonData({
           { label: "Gender", data: res.gender },
         ]);
         setPersonName(res.name);
+        if (res.films.length) {
+          setPersonFilms(res.films);
+        }
 
         setErrorApi(false);
       } else {
@@ -47,5 +52,6 @@ export default function usePersonData({
   return {
     personInfo,
     personName,
+    personFilms,
   };
 }
