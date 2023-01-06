@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import UiButton from "src/components/ui/ui-button";
+
 import styles from "./styles.module.scss";
 
 interface PeopleNavigationProps {
@@ -13,16 +15,12 @@ const PeopleNavigation: React.FC<PeopleNavigationProps> = ({
   maxPage,
 }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <Link to={`/people/?page=${page - 1}`} className={styles.link}>
-        <button className={styles.button} disabled={page <= 1}>
-          Previous page
-        </button>
+        <UiButton disabled={page <= 1}>Previous</UiButton>
       </Link>
       <Link to={`/people/?page=${page + 1}`} className={styles.link}>
-        <button className={styles.button} disabled={page >= maxPage}>
-          Next page
-        </button>
+        <UiButton disabled={page >= maxPage}>Next</UiButton>
       </Link>
     </div>
   );

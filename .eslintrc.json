@@ -24,7 +24,7 @@
   ],
   "rules": {
     // react
-    "react/jsx-props-no-spreading": ["warn"],
+    "react/jsx-props-no-spreading": ["off"],
     "react/function-component-definition": [
       "error", {
         "namedComponents": "arrow-function",
@@ -54,8 +54,7 @@
       }
     ],
     "no-console": [
-      "error",
-      {
+      "error", {
         "allow": ["warn", "error", "debug"]
       }
     ],
