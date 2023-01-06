@@ -1,4 +1,4 @@
-export interface PeopleApiResponse {
+export interface IPeopleApiResponse {
   count: number;
   results: {
     name: string;
@@ -6,10 +6,10 @@ export interface PeopleApiResponse {
   }[];
 }
 
-export interface Person {
+export interface IPerson {
   name: string;
   id: string;
   img: string;
 }
 
-export type People = Person[];
+export type IPeople = IPerson[];

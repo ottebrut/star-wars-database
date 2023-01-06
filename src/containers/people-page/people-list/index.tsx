@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import cn from "classnames";
 
-import { People } from "src/containers/people-page/models";
+import { IPeople } from "src/containers/people-page/models";
 
 import styles from "./styles.module.scss";
 
 interface PeopleListProps {
-  people: People | null;
+  people: IPeople | null;
 }
 
 const PeopleList: React.FC<PeopleListProps> = ({ people }) => {
@@ -15,14 +16,14 @@ const PeopleList: React.FC<PeopleListProps> = ({ people }) => {
       <ul className={styles.list}>
         {people.map((person) => (
           <li key={person.id} className={cn(styles.list__item, styles.person)}>
-            <a href="#">
+            <Link to={`/people/${person.id}`}>
               <img
                 src={person.img}
                 className={styles.person__photo}
                 alt="character portrait"
-              />{" "}
+              />
               <p>{person.name}</p>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

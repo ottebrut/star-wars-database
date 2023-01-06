@@ -6,13 +6,16 @@
   --color-violet: #ae72c2;
 
   --width-max: 1200px;
+  --spacing-extra-small: 5px;
   --spacing-small: 10px;
   --spacing-medium: 20px;
   --spacing-large: 30px;
+  --margin-list: 7px;
 
   --font-family-main: -apple-system, system-ui, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
   --font-size-main: 16px;
-  --font-size-subheader: 20px;
+  --font-size-subheader: 18px;
+  --font-size-message: 20px;
   --font-size-header: 26px;
   --font-weight-bold: 600;
   --text-shadow-yellow:
@@ -23,6 +26,7 @@
     0 0 40px var(--color-blue);
 
   --border-radius-small: 3px;
+  --border-radius-medium: 5px;
 
   --transition: 0.4s;
 

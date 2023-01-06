@@ -6,13 +6,10 @@ import {
   useState,
 } from "react";
 
-import {
-  GUIDE_PERSON_IMG,
-  SWAPI_PEOPLE,
-  SWAPI_PEOPLE_PAGE,
-} from "src/constants/api";
-import { People, PeopleApiResponse } from "src/containers/people-page/models";
+import { SWAPI_PEOPLE, SWAPI_PEOPLE_PAGE } from "src/constants/api";
+import { IPeople, IPeopleApiResponse } from "src/containers/people-page/models";
 import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
+import { getPersonImage } from "src/utils/get-person-data";
 import { getApiResponse } from "src/utils/network";
 
 interface UsePeopleProps extends WithErrorApiViewProps {
@@ -25,12 +22,12 @@ export default function usePeople({
   page,
   setMaxPage,
 }: UsePeopleProps): {
-  people: People | null;
+  people: IPeople | null;
 } {
-  const [people, setPeople] = useState<People | null>(null);
+  const [people, setPeople] = useState<IPeople | null>(null);
 
   const getPeopleData = useCallback(async () => {
-    const body = await getApiResponse<PeopleApiResponse>(
+    const body = await getApiResponse<IPeopleApiResponse>(
       SWAPI_PEOPLE_PAGE(page)
     );
     if (body) {
@@ -55,10 +52,6 @@ export default function usePeople({
   return { people };
 }
 
-export function getPersonId(personUrl: string): string {
+function getPersonId(personUrl: string): string {
   return personUrl.replace(SWAPI_PEOPLE, "").replace(/\//g, "");
-}
-
-export function getPersonImage(personId: string): string {
-  return GUIDE_PERSON_IMG(personId);
 }
