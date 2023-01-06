@@ -3,16 +3,6 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "react-app",
-    "airbnb",
-    "airbnb-typescript",
-    "plugin:import/typescript",
-    "plugin:react/jsx-runtime",
-    "plugin:prettier/recommended"
-  ],
-  "overrides": [
-  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -22,6 +12,16 @@
   "plugins": [
     "react", "@typescript-eslint", "unused-imports", "simple-import-sort", "prettier"
   ],
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:import/typescript",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "ignorePatterns": ["vite.config.ts", "!.storybook"],
   "rules": {
     // react
     "react/jsx-props-no-spreading": ["off"],
@@ -59,5 +59,13 @@
       }
     ],
     "radix": ["off"]
-  }
+  },
+  "overrides": [
+    {
+      "files": [".storybook/*", "*.stories.@(ts|tsx)"],
+      "rules": {
+        "import/no-extraneous-dependencies": ["off"]
+      }
+    }
+  ]
 }

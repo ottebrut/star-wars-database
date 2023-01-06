@@ -6,7 +6,8 @@ import { Theme } from "src/models/theme";
 import "src/components/ui/ui-vars.scss";
 import styles from "./styles.module.scss";
 
-interface UiButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface UiButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: Theme;
 }
 

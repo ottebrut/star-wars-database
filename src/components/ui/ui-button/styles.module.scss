@@ -13,6 +13,15 @@
   cursor: pointer;
 
   transition: var(--transition);
+
+  &:disabled,
+  &:disabled:hover {
+    color: var(--color-grey);
+
+    background: transparent;
+    border-color: var(--color-grey);
+    cursor: not-allowed;
+  }
 }
 
 .dark {
@@ -24,15 +33,6 @@
     color: var(--color-black);
 
     background: var(--color-white);
-  }
-
-  &:disabled,
-  &:disabled:hover {
-    color: var(--color-grey);
-
-    background: transparent;
-    border-color: var(--color-grey);
-    cursor: not-allowed;
   }
 }
 
