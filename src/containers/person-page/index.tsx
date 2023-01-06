@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import PersonInfo from "src/containers/person-page/person-info";
+import PersonLinkBack from "src/containers/person-page/person-link-back";
 import PersonPhoto from "src/containers/person-page/person-photo";
 import usePersonData from "src/containers/person-page/use-person-data";
 import withErrorApi, {
@@ -19,14 +20,18 @@ const PersonPage: React.FC<PersonPageProps> = ({ setErrorApi }) => {
   const { personInfo, personName } = usePersonData({ id: id!, setErrorApi });
 
   return (
-    <div className={styles.person}>
-      <span className={styles.person__name}>{personName}</span>
+    <>
+      <PersonLinkBack />
 
-      <div className={styles["person__data-container"]}>
-        <PersonPhoto src={personImageSrc} />
-        {personInfo && <PersonInfo personInfo={personInfo} />}
+      <div className={styles.person}>
+        <span className={styles.person__name}>{personName}</span>
+
+        <div className={styles["person__data-container"]}>
+          <PersonPhoto src={personImageSrc} />
+          {personInfo && <PersonInfo personInfo={personInfo} />}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
