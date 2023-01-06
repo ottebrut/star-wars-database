@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 
-import PersonFilms from "src/containers/person-page/person-films";
+import UiLoader from "src/components/ui/ui-loader";
 import PersonInfo from "src/containers/person-page/person-info";
 import PersonLinkBack from "src/containers/person-page/person-link-back";
 import PersonPhoto from "src/containers/person-page/person-photo";
@@ -12,6 +12,10 @@ import withErrorApi, {
 import { getPersonImage } from "src/utils/get-person-data";
 
 import styles from "./styles.module.scss";
+
+const PersonFilms = React.lazy(
+  () => import("src/containers/person-page/person-films")
+);
 
 interface PersonPageProps extends WithErrorApiViewProps {}
 
@@ -33,7 +37,11 @@ const PersonPage: React.FC<PersonPageProps> = ({ setErrorApi }) => {
         <div className={styles["person__data-container"]}>
           <PersonPhoto src={personImageSrc} />
           {personInfo && <PersonInfo info={personInfo} />}
-          {personFilms && <PersonFilms filmsUrls={personFilms} />}
+          {personFilms && (
+            <Suspense fallback={<UiLoader />}>
+              <PersonFilms filmsUrls={personFilms} />
+            </Suspense>
+          )}
         </div>
       </div>
     </>
