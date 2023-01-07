@@ -29,8 +29,7 @@ const PeopleList: React.FC<PeopleListProps> = ({ people }) => {
       </ul>
     );
   }
-
-  return <>no data</>;
+  return <div />;
 };
 
 export default PeopleList;
