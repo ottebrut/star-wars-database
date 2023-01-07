@@ -10,3 +10,11 @@
   -webkit-text-stroke: 0.5px var(--color-yellow);
   -webkit-text-fill-color: transparent;
 }
+
+.video {
+  display: block;
+  margin: var(--spacing-large) auto 0;
+
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow-white);
+}

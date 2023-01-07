@@ -27,6 +27,9 @@ const Header: React.FC = () => {
         <li>
           <NavLink to="/search">Search</NavLink>
         </li>
+        <li>
+          <NavLink to="/fail">Fail</NavLink>
+        </li>
       </ul>
 
       <FavoritesBookmark />

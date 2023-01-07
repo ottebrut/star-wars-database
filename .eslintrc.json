@@ -33,6 +33,7 @@
     ],
     "react/require-default-props": ["off"],
     "react/button-has-type": ["off"],
+    "jsx-a11y/media-has-caption": ["off"],
     // import
     "import/order": ["off"],
     "import/prefer-default-export": ["off"],
@@ -40,7 +41,10 @@
     "simple-import-sort/imports": [
       "error", {
         "groups": [
-          ["^node:"], ["^react", "^@?\\w"], ["^src/", "^"], ["^\\u0000", "^.+\\.(svg|png|jpg|jpeg)$", "^.+\\.s?css$"]
+          ["^node:"],
+          ["^react", "^@?\\w"],
+          ["^src/", "^"],
+          ["^\\u0000", "^.+\\.(mp3|mp4|avi)$", "^.+\\.(svg|png|jpg|jpeg)$", "^.+\\.s?css$"]
         ]
       }
     ],

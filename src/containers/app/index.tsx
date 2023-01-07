@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 
+import ErrorMessage from "src/components/error-message";
 import FavoritesPage from "src/containers/favorites-page";
 import Header from "src/containers/header";
 import HomePage from "src/containers/home-page";
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/not-found" element={<NotFoundPage />} />
+        <Route path="/fail" element={<ErrorMessage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
