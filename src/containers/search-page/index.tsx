@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import PeopleList from "src/components/people-list";
 import { SWAPI_SEARCH_PEOPLE } from "src/constants/api";
+import SearchPeopleList from "src/containers/search-page/search-people-list";
 import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
@@ -46,11 +46,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
         onChange={handleInputChange}
         placeholder="Enter character's name"
       />
-      {people.length ? (
-        <PeopleList people={people} />
-      ) : (
-        <h2 style={{ color: "white" }}>No results</h2>
-      )}
+      <SearchPeopleList people={people} />
     </>
   );
 };
