@@ -39,6 +39,14 @@
 
   --transition: 0.4s;
 
-  --theme-default-header: #cccc46;
-  --theme-default-bgimage: url("/src/assets/images/bg.webp");
+  /* THEMES */
+  --theme-light-header: #dfe2df;
+  --theme-dark-header: #ca6c6f;
+  --theme-neutral-header: #cccc46;
+  --theme-default-header: var(--theme-neutral-header);
+
+  --theme-light-bgimage: linear-gradient(to left top, #4dea43, #00ca94, #00a3bf, #0077b7, #154a86);
+  --theme-dark-bgimage: linear-gradient(to left top, #ad0400, #8d002f, #5d0f3d, #2d1830, #0f0f0f);
+  --theme-neutral-bgimage: url("/src/assets/images/bg.webp");
+  --theme-default-bgimage: var(--theme-neutral-bgimage);
 }

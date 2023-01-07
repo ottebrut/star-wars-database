@@ -40,7 +40,7 @@
     "simple-import-sort/imports": [
       "error", {
         "groups": [
-          ["^node:"], ["^react", "^@?\\w"], ["^src/", "^"], ["^\\u0000", "^.+\\.(svg|png|jpg)$", "^.+\\.s?css$"]
+          ["^node:"], ["^react", "^@?\\w"], ["^src/", "^"], ["^\\u0000", "^.+\\.(svg|png|jpg|jpeg)$", "^.+\\.s?css$"]
         ]
       }
     ],
