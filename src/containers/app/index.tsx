@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 
+import FavoritesPage from "src/containers/favorites-page";
 import Header from "src/containers/header";
 import HomePage from "src/containers/home-page";
 import NotFoundPage from "src/containers/not-found-page";
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/people" element={<PeoplePage />} />
         <Route path="/people/:id" element={<PersonPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import FavoritesBookmark from "src/components/favorites-bookmark";
+
 import styles from "./styles.module.scss";
 
 const Header: React.FC = () => {
@@ -13,10 +15,9 @@ const Header: React.FC = () => {
         <li>
           <NavLink to="/people">People</NavLink>
         </li>
-        <li>
-          <NavLink to="/not-found">Not Found</NavLink>
-        </li>
       </ul>
+
+      <FavoritesBookmark />
     </div>
   );
 };

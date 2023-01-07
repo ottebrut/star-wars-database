@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import { IPeople } from "src/containers/people-page/models";
 
-import styles from "./styles.module.scss";
+import styles from "src/components/people-list/styles.module.scss";
 
 interface PeopleListProps {
   people: IPeople | null;

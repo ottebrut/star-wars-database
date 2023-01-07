@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import PeopleList from "src/containers/people-page/people-list";
+import PeopleList from "src/components/people-list";
 import PeopleNavigation from "src/containers/people-page/people-navigation";
 import usePeople from "src/containers/people-page/use-people";
 import withErrorApi, {
