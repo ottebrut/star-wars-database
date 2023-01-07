@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 
-import { IPeople } from "src/containers/people-page/models";
+import { IPeople } from "src/models/people";
 
 import styles from "src/components/people-list/styles.module.scss";
 

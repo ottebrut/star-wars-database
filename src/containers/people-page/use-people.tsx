@@ -6,10 +6,11 @@ import {
   useState,
 } from "react";
 
-import { SWAPI_PEOPLE, SWAPI_PEOPLE_PAGE } from "src/constants/api";
-import { IPeople, IPeopleApiResponse } from "src/containers/people-page/models";
+import { SWAPI_PEOPLE_PAGE } from "src/constants/api";
 import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
-import { getPersonImage } from "src/utils/get-person-data";
+import { IPeople } from "src/models/people";
+import { IPeopleApiResponse } from "src/models/people-api";
+import { getPersonId, getPersonImage } from "src/utils/get-person-data";
 import { getApiResponse } from "src/utils/network";
 
 interface UsePeopleProps extends WithErrorApiViewProps {
@@ -50,8 +51,4 @@ export default function usePeople({
   }, [getPeopleData]);
 
   return { people };
-}
-
-function getPersonId(personUrl: string): string {
-  return personUrl.replace(SWAPI_PEOPLE, "").replace(/\//g, "");
 }

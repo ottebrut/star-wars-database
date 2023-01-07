@@ -24,6 +24,9 @@ const Header: React.FC = () => {
         <li>
           <NavLink to="/people">People</NavLink>
         </li>
+        <li>
+          <NavLink to="/search">Search</NavLink>
+        </li>
       </ul>
 
       <FavoritesBookmark />

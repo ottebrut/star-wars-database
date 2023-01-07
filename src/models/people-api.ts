@@ -1,5 +1,3 @@
-import { IPerson } from "src/models/person";
-
 export interface IPeopleApiResponse {
   count: number;
   results: {
@@ -7,5 +5,3 @@ export interface IPeopleApiResponse {
     url: string;
   }[];
 }
-
-export type IPeople = IPerson[];
