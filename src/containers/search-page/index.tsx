@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { debounce } from "lodash";
 
 import { SWAPI_SEARCH_PEOPLE } from "src/constants/api";
 import SearchPeopleList from "src/containers/search-page/search-people-list";
@@ -15,27 +16,34 @@ interface SearchPageProps extends WithErrorApiViewProps {}
 const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
   const [people, setPeople] = useState<IPeople>([]);
 
-  const updateCharactersList = async (searchValue: string) => {
-    const res = await getApiResponse<IPeopleApiResponse>(
-      SWAPI_SEARCH_PEOPLE(searchValue)
-    );
-
-    if (res) {
-      setPeople(
-        res.results.map(({ url, name }) => {
-          const id = getPersonId(url);
-          return { name, id, img: getPersonImage(id) };
-        })
+  const updateCharactersList = useCallback(
+    async (searchValue: string) => {
+      const res = await getApiResponse<IPeopleApiResponse>(
+        SWAPI_SEARCH_PEOPLE(searchValue)
       );
-      setErrorApi(false);
-    } else {
-      setErrorApi(true);
-    }
-  };
+
+      if (res) {
+        setPeople(
+          res.results.map(({ url, name }) => {
+            const id = getPersonId(url);
+            return { name, id, img: getPersonImage(id) };
+          })
+        );
+        setErrorApi(false);
+      } else {
+        setErrorApi(true);
+      }
+    },
+    [setErrorApi]
+  );
+  const debouncedUpdateCharactersList = useMemo(
+    () => debounce((searchValue) => updateCharactersList(searchValue), 300),
+    [updateCharactersList]
+  );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
-    updateCharactersList(searchValue);
+    debouncedUpdateCharactersList(searchValue);
   };
 
   return (
