@@ -15,6 +15,7 @@ module.exports = {
     storyStoreV7: true,
   },
   async viteFinal(config) {
+    config.base = process.env.BASE_PATH || config.base;
     config.plugins.push(tsconfigPaths.default());
     return config;
   },

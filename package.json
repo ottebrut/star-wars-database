@@ -9,7 +9,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "BASE_PATH=/star-wars-database/ build-storybook -o ./dist/storybook",
+    "build-gh-pages": "gh-pages -d dist",
+    "deploy": "yarn build && yarn build-storybook && yarn build-gh-pages"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -52,6 +54,7 @@
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-storybook": "^0.6.8",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
