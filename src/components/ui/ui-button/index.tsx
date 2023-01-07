@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import { ITheme } from "src/models/theme";
 
-import "src/components/ui/ui-vars.scss";
+import "src/components/ui/styles/ui-global.scss";
 import styles from "./styles.module.scss";
 
 export interface UiButtonProps

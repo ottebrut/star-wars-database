@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { debounce } from "lodash";
 
+import UiInput from "src/components/ui/ui-input";
 import { SWAPI_SEARCH_PEOPLE } from "src/constants/api";
 import SearchPeopleList from "src/containers/search-page/search-people-list";
 import withErrorApi, {
@@ -10,6 +11,8 @@ import { IPeople } from "src/models/people";
 import { IPeopleApiResponse } from "src/models/people-api";
 import { getPersonId, getPersonImage } from "src/utils/get-person-data";
 import { getApiResponse } from "src/utils/network";
+
+import styles from "./styles.module.scss";
 
 interface SearchPageProps extends WithErrorApiViewProps {}
 
@@ -49,7 +52,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
   return (
     <>
       <h1 className="header__text">Search</h1>
-      <input
+      <UiInput
+        classes={styles["input-search"]}
         type="text"
         onChange={handleInputChange}
         placeholder="Enter character's name"

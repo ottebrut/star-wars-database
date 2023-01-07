@@ -1,7 +1,7 @@
 import React from "react";
 
 import loader from "./images/loader.svg";
-import "src/components/ui/ui-vars.scss";
+import "src/components/ui/styles/ui-global.scss";
 import styles from "./styles.module.scss";
 
 const UiLoader: React.FC = () => {
