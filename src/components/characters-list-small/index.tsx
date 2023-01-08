@@ -4,13 +4,13 @@ import cn from "classnames";
 
 import { ICharacters } from "src/models/character";
 
-import styles from "./styles.module.scss";
+import styles from "src/components/characters-list-small/styles.module.scss";
 
-interface SearchCharactersListProps {
+interface CharactersListSmallProps {
   characters: ICharacters | null;
 }
 
-const SearchCharactersList: React.FC<SearchCharactersListProps> = ({
+const CharactersListSmall: React.FC<CharactersListSmallProps> = ({
   characters,
 }) => {
   if (characters?.length) {
@@ -37,4 +37,4 @@ const SearchCharactersList: React.FC<SearchCharactersListProps> = ({
   return <h2 className={styles.comment}>No results</h2>;
 };
 
-export default SearchCharactersList;
+export default CharactersListSmall;

@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { debounce } from "lodash";
 
+import CharactersListSmall from "src/components/characters-list-small";
 import UiInput from "src/components/ui/ui-input";
-import SearchCharactersList from "src/containers/search-page/search-characters-list";
 import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
@@ -58,7 +58,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
         onChange={handleInputChange}
         placeholder="Enter character's name"
       />
-      <SearchCharactersList characters={characters} />
+      <CharactersListSmall characters={characters} />
     </>
   );
 };
