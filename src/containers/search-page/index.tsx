@@ -6,47 +6,31 @@ import UiInput from "src/components/ui/ui-input";
 import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
-import { ICharacters } from "src/models/character";
-import { SWAPI_CHARACTER_PEOPLE } from "src/services/api/constants";
-import { ISwapiCharactersResponse } from "src/services/api/models";
-import { getCharacterId, getCharacterImage } from "src/utils/get-person-data";
-import { getApiResponse } from "src/utils/network";
+import useCharacters from "src/hooks/use-characters";
 
 import styles from "./styles.module.scss";
 
 interface SearchPageProps extends WithErrorApiViewProps {}
 
 const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
-  const [characters, setCharacters] = useState<ICharacters>([]);
+  const [searchValue, setSearchValue] = useState("");
+  const { characters } = useCharacters({
+    setErrorApi,
+    search: searchValue,
+  });
 
-  const updateCharactersList = useCallback(
-    async (searchValue: string) => {
-      const res = await getApiResponse<ISwapiCharactersResponse>(
-        SWAPI_CHARACTER_PEOPLE(searchValue)
-      );
-
-      if (res) {
-        setCharacters(
-          res.results.map(({ url, name }) => {
-            const id = getCharacterId(url);
-            return { name, id, img: getCharacterImage(id) };
-          })
-        );
-        setErrorApi(false);
-      } else {
-        setErrorApi(true);
-      }
-    },
-    [setErrorApi]
+  const updateSearchValue = useCallback(
+    async (inputValue: string) => setSearchValue(inputValue),
+    []
   );
-  const debouncedUpdateCharactersList = useMemo(
-    () => debounce((searchValue) => updateCharactersList(searchValue), 300),
-    [updateCharactersList]
+  const debouncedUpdateSearchValue = useMemo(
+    () => debounce((inputValue) => updateSearchValue(inputValue), 300),
+    [updateSearchValue]
   );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.target.value;
-    debouncedUpdateCharactersList(searchValue);
+    const inputValue = event.target.value;
+    debouncedUpdateSearchValue(inputValue);
   };
 
   return (
@@ -55,6 +39,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
       <UiInput
         classes={styles["input-search"]}
         type="text"
+        value={searchValue}
         onChange={handleInputChange}
         placeholder="Enter character's name"
       />

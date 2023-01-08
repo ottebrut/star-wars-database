@@ -10,7 +10,7 @@ import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
 import { ICharacter } from "src/models/character";
-import { getCharacterImage } from "src/utils/get-person-data";
+import { getCharacterImage } from "src/utils/get-character-data";
 
 import styles from "./styles.module.scss";
 

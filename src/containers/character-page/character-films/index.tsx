@@ -4,7 +4,7 @@ import {
   IFilmApiResponse,
   IFilmData,
 } from "src/containers/character-page/character-films/models";
-import { getApiResponses } from "src/utils/network";
+import { getApiResponses } from "src/utils/get-api-response";
 import { notFalse } from "src/utils/types";
 
 import styles from "./styles.module.scss";

@@ -3,10 +3,10 @@ import { useSearchParams } from "react-router-dom";
 
 import CharactersListBig from "src/components/characters-list-big";
 import CharactersNavigation from "src/containers/characters-page/characters-navigation";
-import useCharacters from "src/containers/characters-page/use-characters";
 import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
+import useCharacters from "src/hooks/use-characters";
 
 interface CharactersPageProps extends WithErrorApiViewProps {}
 

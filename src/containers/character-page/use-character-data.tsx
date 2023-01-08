@@ -4,7 +4,7 @@ import { ICharacterInfo } from "src/containers/character-page/models";
 import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
 import { SWAPI_CHARACTER } from "src/services/api/constants";
 import { ISwapiCharacterResponse } from "src/services/api/models";
-import { getApiResponse } from "src/utils/network";
+import { getApiResponse } from "src/utils/get-api-response";
 
 interface UsePersonDataProps extends WithErrorApiViewProps {
   id: string;

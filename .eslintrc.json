@@ -21,7 +21,7 @@
     "plugin:prettier/recommended",
     "plugin:storybook/recommended"
   ],
-  "ignorePatterns": ["vite.config.ts", "!.storybook"],
+  "ignorePatterns": ["vite.config.ts", "dist"],
   "rules": {
     // react
     "react/jsx-props-no-spreading": ["off"],
