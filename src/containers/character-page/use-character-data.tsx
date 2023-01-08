@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react";
 
-import { SWAPI_PERSON } from "src/constants/api";
-import {
-  IPersonApiResponse,
-  IPersonInfo,
-} from "src/containers/person-page/models";
+import { ICharacterInfo } from "src/containers/character-page/models";
 import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
+import { SWAPI_CHARACTER } from "src/services/api/constants";
+import { ISwapiCharacterResponse } from "src/services/api/models";
 import { getApiResponse } from "src/utils/network";
 
 interface UsePersonDataProps extends WithErrorApiViewProps {
   id: string;
 }
 
-export default function usePersonData({
+export default function useCharacterData({
   id,
   setErrorApi,
 }: UsePersonDataProps): {
-  personInfo: IPersonInfo | null;
-  personName: string | null;
-  personFilms: string[] | null;
+  characterInfo: ICharacterInfo | null;
+  characterName: string | null;
+  characterFilms: string[] | null;
 } {
-  const [personInfo, setPersonInfo] = useState<IPersonInfo | null>(null);
-  const [personName, setPersonName] = useState<string | null>(null);
-  const [personFilms, setPersonFilms] = useState<string[] | null>(null);
+  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo | null>(
+    null
+  );
+  const [characterName, setCharacterName] = useState<string | null>(null);
+  const [characterFilms, setCharacterFilms] = useState<string[] | null>(null);
 
   useEffect(() => {
     (async () => {
-      const res = await getApiResponse<IPersonApiResponse>(SWAPI_PERSON(id!));
+      const res = await getApiResponse<ISwapiCharacterResponse>(
+        SWAPI_CHARACTER(id!)
+      );
       if (res) {
-        setPersonInfo([
+        setCharacterInfo([
           { label: "Height", data: res.height },
           { label: "Width", data: res.width },
           { label: "Hair Color", data: res.hair_color },
@@ -37,9 +39,9 @@ export default function usePersonData({
           { label: "Birth Year", data: res.birth_year },
           { label: "Gender", data: res.gender },
         ]);
-        setPersonName(res.name);
+        setCharacterName(res.name);
         if (res.films.length) {
-          setPersonFilms(res.films);
+          setCharacterFilms(res.films);
         }
 
         setErrorApi(false);
@@ -50,8 +52,8 @@ export default function usePersonData({
   }, [id, setErrorApi]);
 
   return {
-    personInfo,
-    personName,
-    personFilms,
+    characterInfo,
+    characterName,
+    characterFilms,
   };
 }

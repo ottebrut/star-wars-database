@@ -1,4 +1,12 @@
-export interface IPersonApiResponse {
+export interface ISwapiCharactersResponse {
+  count: number;
+  results: {
+    name: string;
+    url: string;
+  }[];
+}
+
+export interface ISwapiCharacterResponse {
   height: string;
   width: string;
   hair_color: string;
@@ -9,8 +17,3 @@ export interface IPersonApiResponse {
   name: string;
   films: string[];
 }
-
-export type IPersonInfo = {
-  label: string;
-  data: string | string[];
-}[];

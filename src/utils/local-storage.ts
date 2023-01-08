@@ -1,7 +1,13 @@
-export function getLocalStorageData<T>(key: string): T | null {
+export function getLocalStorageData<T>(
+  key: string,
+  isOfType?: (_: unknown) => boolean
+): T | null {
   const data = localStorage.getItem(key);
   if (data) {
-    return JSON.parse(data) as T;
+    const parsedData = JSON.parse(data);
+    if (!isOfType || isOfType(parsedData)) {
+      return parsedData;
+    }
   }
   return null;
 }

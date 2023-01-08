@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { IPerson } from "src/models/person";
+import { ICharacter } from "src/models/character";
 import {
-  addPersonToFavorites,
-  removePersonFromFavorites,
+  addCharacterToFavorites,
+  removeCharacterFromFavorites,
 } from "src/store/actions";
 import { ReducersStore } from "src/store/reducers";
 
@@ -12,29 +12,35 @@ import favoriteIcon from "./images/favorite.svg";
 import favoriteFillIcon from "./images/favorite-fill.svg";
 import styles from "./styles.module.scss";
 
-interface PersonPhotoProps {
-  person: IPerson;
+interface CharacterPhotoProps {
+  character: ICharacter;
 }
 
-const PersonPhoto: React.FC<PersonPhotoProps> = ({ person }) => {
+const CharacterPhoto: React.FC<CharacterPhotoProps> = ({ character }) => {
   const store = useSelector<ReducersStore, ReducersStore["favoritesReducer"]>(
     (state) => state.favoritesReducer
   );
-  const isFavorite = store.favoritePersons.some((fP) => fP.id === person?.id);
+  const isFavorite = store.favoriteCharacters.some(
+    (fC) => fC.id === character?.id
+  );
   const dispatch = useDispatch();
 
-  const togglePersonFavorite = () => {
+  const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removePersonFromFavorites(person.id));
+      dispatch(removeCharacterFromFavorites(character.id));
     } else {
-      dispatch(addPersonToFavorites(person));
+      dispatch(addCharacterToFavorites(character));
     }
   };
 
   return (
     <div className={styles.container}>
-      <img src={person.img} className={styles.photo} alt="character portrait" />
-      <button className={styles.favorite} onClick={togglePersonFavorite}>
+      <img
+        src={character.img}
+        className={styles.photo}
+        alt="character portrait"
+      />
+      <button className={styles.favorite} onClick={toggleFavorite}>
         <img
           src={isFavorite ? favoriteFillIcon : favoriteIcon}
           alt="toggle favorite"
@@ -44,4 +50,4 @@ const PersonPhoto: React.FC<PersonPhotoProps> = ({ person }) => {
   );
 };
 
-export default PersonPhoto;
+export default CharacterPhoto;

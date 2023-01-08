@@ -5,12 +5,12 @@ import UiButton from "src/components/ui/ui-button";
 
 import styles from "./styles.module.scss";
 
-interface PeopleNavigationProps {
+interface CharactersNavigationProps {
   page: number;
   maxPage: number;
 }
 
-const PeopleNavigation: React.FC<PeopleNavigationProps> = ({
+const CharactersNavigation: React.FC<CharactersNavigationProps> = ({
   page,
   maxPage,
 }) => {
@@ -26,4 +26,4 @@ const PeopleNavigation: React.FC<PeopleNavigationProps> = ({
   );
 };
 
-export default PeopleNavigation;
+export default CharactersNavigation;

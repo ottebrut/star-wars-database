@@ -2,14 +2,14 @@ import React, { useCallback, useMemo, useState } from "react";
 import { debounce } from "lodash";
 
 import UiInput from "src/components/ui/ui-input";
-import { SWAPI_SEARCH_PEOPLE } from "src/constants/api";
-import SearchPeopleList from "src/containers/search-page/search-people-list";
+import SearchCharactersList from "src/containers/search-page/search-characters-list";
 import withErrorApi, {
   WithErrorApiViewProps,
 } from "src/hoc-helpers/with-error-api";
-import { IPeople } from "src/models/people";
-import { IPeopleApiResponse } from "src/models/people-api";
-import { getPersonId, getPersonImage } from "src/utils/get-person-data";
+import { ICharacters } from "src/models/character";
+import { SWAPI_CHARACTER_PEOPLE } from "src/services/api/constants";
+import { ISwapiCharactersResponse } from "src/services/api/models";
+import { getCharacterId, getCharacterImage } from "src/utils/get-person-data";
 import { getApiResponse } from "src/utils/network";
 
 import styles from "./styles.module.scss";
@@ -17,19 +17,19 @@ import styles from "./styles.module.scss";
 interface SearchPageProps extends WithErrorApiViewProps {}
 
 const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
-  const [people, setPeople] = useState<IPeople>([]);
+  const [characters, setCharacters] = useState<ICharacters>([]);
 
   const updateCharactersList = useCallback(
     async (searchValue: string) => {
-      const res = await getApiResponse<IPeopleApiResponse>(
-        SWAPI_SEARCH_PEOPLE(searchValue)
+      const res = await getApiResponse<ISwapiCharactersResponse>(
+        SWAPI_CHARACTER_PEOPLE(searchValue)
       );
 
       if (res) {
-        setPeople(
+        setCharacters(
           res.results.map(({ url, name }) => {
-            const id = getPersonId(url);
-            return { name, id, img: getPersonImage(id) };
+            const id = getCharacterId(url);
+            return { name, id, img: getCharacterImage(id) };
           })
         );
         setErrorApi(false);
@@ -58,7 +58,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
         onChange={handleInputChange}
         placeholder="Enter character's name"
       />
-      <SearchPeopleList people={people} />
+      <SearchCharactersList characters={characters} />
     </>
   );
 };

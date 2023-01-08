@@ -1,9 +1,12 @@
-import { GUIDE_PERSON_IMG, SWAPI_PEOPLE } from "src/constants/api";
+import {
+  GUIDE_CHARACTER_IMG,
+  SWAPI_CHARACTERS,
+} from "src/services/api/constants";
 
-export function getPersonId(personUrl: string): string {
-  return personUrl.replace(SWAPI_PEOPLE, "").replace(/\//g, "");
+export function getCharacterId(characterUrl: string): string {
+  return characterUrl.replace(SWAPI_CHARACTERS, "").replace(/\//g, "");
 }
 
-export function getPersonImage(personId: string): string {
-  return GUIDE_PERSON_IMG(personId);
+export function getCharacterImage(characterId: string): string {
+  return GUIDE_CHARACTER_IMG(characterId);
 }

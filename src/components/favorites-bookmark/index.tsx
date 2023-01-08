@@ -11,7 +11,7 @@ const FavoritesBookmark: React.FC = () => {
   const store = useSelector<ReducersStore, ReducersStore["favoritesReducer"]>(
     (state) => state.favoritesReducer
   );
-  const count = store.favoritePersons.length;
+  const count = store.favoriteCharacters.length;
 
   return (
     <div className={styles.container}>

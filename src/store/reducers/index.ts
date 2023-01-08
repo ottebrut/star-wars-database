@@ -2,11 +2,11 @@ import { combineReducers } from "redux";
 
 import {
   favoritesReducer,
-  FavoritesState,
+  IFavoritesState,
 } from "src/store/reducers/favorites-reducer";
 
 export interface ReducersStore {
-  favoritesReducer: FavoritesState;
+  favoritesReducer: IFavoritesState;
 }
 
 export default combineReducers({

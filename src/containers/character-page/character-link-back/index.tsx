@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import arrowLeft from "../images/arrow-left.svg";
 import styles from "./styles.module.scss";
 
-const PersonLinkBack: React.FC = () => {
+const CharacterLinkBack: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -19,4 +19,4 @@ const PersonLinkBack: React.FC = () => {
   );
 };
 
-export default PersonLinkBack;
+export default CharacterLinkBack;

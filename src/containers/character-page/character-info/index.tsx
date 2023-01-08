@@ -1,14 +1,14 @@
 import React from "react";
 
-import { IPersonInfo } from "src/containers/person-page/models";
+import { ICharacterInfo } from "src/containers/character-page/models";
 
 import styles from "./styles.module.scss";
 
-interface PersonInfoProps {
-  info: IPersonInfo;
+interface CharacterInfoProps {
+  info: ICharacterInfo;
 }
 
-const PersonInfo: React.FC<PersonInfoProps> = ({ info }) => {
+const CharacterInfo: React.FC<CharacterInfoProps> = ({ info }) => {
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list}>
@@ -25,4 +25,4 @@ const PersonInfo: React.FC<PersonInfoProps> = ({ info }) => {
   );
 };
 
-export default PersonInfo;
+export default CharacterInfo;

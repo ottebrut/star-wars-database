@@ -1,50 +1,51 @@
-import { IPerson } from "src/models/person";
-import {
-  ADD_PERSON_TO_FAVORITE,
-  favoritesActionTypes,
-  REMOVE_PERSON_FROM_FAVORITE,
-} from "src/store/constants/favorites-action-types";
+import { ICharacter } from "src/models/character";
+import favoritesActionTypes from "src/store/constants/favorites-action-types";
 import { getLocalStorageData } from "src/utils/local-storage";
 
-export interface FavoritesState {
-  favoritePersons: IPerson[];
+export interface IFavoritesState {
+  favoriteCharacters: ICharacter[];
 }
 
-const initialState: FavoritesState = getLocalStorageData(
-  "favoritesReducer"
+export function isIFavoritesState(state: unknown): state is IFavoritesState {
+  return typeof state === "object" && !!state && "favoriteCharacters" in state;
+}
+
+const initialState: IFavoritesState = getLocalStorageData(
+  "favoritesReducer",
+  isIFavoritesState
 ) || {
-  favoritePersons: [],
+  favoriteCharacters: [],
 };
 
-interface FavoritesAction {
-  type: typeof favoritesActionTypes[number];
+interface IFavoritesAction {
+  type: keyof typeof favoritesActionTypes;
   payload: unknown;
 }
 
 export const favoritesReducer = (
   state = initialState,
-  action?: FavoritesAction
-) => {
+  action?: IFavoritesAction
+): IFavoritesState => {
   switch (action?.type) {
-    case ADD_PERSON_TO_FAVORITE: {
-      const person = action.payload as IPerson;
-      const updatedPersons = state.favoritePersons.filter(
-        (fP) => fP.id !== person.id
+    case favoritesActionTypes.ADD_CHARACTER_TO_FAVORITE: {
+      const character = action.payload as ICharacter;
+      const updatedCharacters = state.favoriteCharacters.filter(
+        (fC) => fC.id !== character.id
       );
-      updatedPersons.unshift(person);
+      updatedCharacters.unshift(character);
       return {
         ...state,
-        favoritePersons: updatedPersons,
+        favoriteCharacters: updatedCharacters,
       };
     }
-    case REMOVE_PERSON_FROM_FAVORITE: {
-      const personId = action.payload as string;
-      const updatedPersons = state.favoritePersons.filter(
-        (fP) => fP.id !== personId
+    case favoritesActionTypes.REMOVE_CHARACTER_FROM_FAVORITE: {
+      const characterId = action.payload as string;
+      const updatedCharacters = state.favoriteCharacters.filter(
+        (fC) => fC.id !== characterId
       );
       return {
         ...state,
-        favoritePersons: updatedPersons,
+        favoriteCharacters: updatedCharacters,
       };
     }
     default:

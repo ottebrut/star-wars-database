@@ -3,17 +3,17 @@ import React, { useEffect, useState } from "react";
 import {
   IFilmApiResponse,
   IFilmData,
-} from "src/containers/person-page/person-films/models";
+} from "src/containers/character-page/character-films/models";
 import { getApiResponses } from "src/utils/network";
 import { notFalse } from "src/utils/types";
 
 import styles from "./styles.module.scss";
 
-interface PersonFilmsProps {
+interface CharacterFilmsProps {
   filmsUrls: string[];
 }
 
-const PersonFilms: React.FC<PersonFilmsProps> = ({ filmsUrls }) => {
+const CharacterFilms: React.FC<CharacterFilmsProps> = ({ filmsUrls }) => {
   const [filmsData, setFilmsData] = useState<IFilmData[] | null>(null);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const PersonFilms: React.FC<PersonFilmsProps> = ({ filmsUrls }) => {
   );
 };
 
-export default PersonFilms;
+export default CharacterFilms;

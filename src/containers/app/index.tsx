@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router";
 
 import ErrorMessage from "src/components/error-message";
+import PersonPage from "src/containers/character-page";
+import PeoplePage from "src/containers/characters-page";
 import FavoritesPage from "src/containers/favorites-page";
 import Header from "src/containers/header";
 import HomePage from "src/containers/home-page";
 import NotFoundPage from "src/containers/not-found-page";
-import PeoplePage from "src/containers/people-page";
-import PersonPage from "src/containers/person-page";
 import SearchPage from "src/containers/search-page";
 
 import styles from "./styles.module.scss";
