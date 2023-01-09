@@ -1,6 +1,11 @@
-export async function getApiResponse<T>(url: string): Promise<T | false> {
+export async function getApiResponse<T>(
+  url: string,
+  controller?: AbortController
+): Promise<T | false> {
   try {
-    const res = await fetch(url.replace("http:", "https:"));
+    const res = await fetch(url.replace("http:", "https:"), {
+      signal: controller?.signal,
+    });
     if (!res.ok) {
       console.error("Could not fetch:", res.status);
       return false;

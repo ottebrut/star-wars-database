@@ -35,6 +35,7 @@ export default function useCharacters({
   const [characters, setCharacters] = useState<ICharacters | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     (async () => {
       let request = SWAPI_CHARACTERS;
       if (page || search) {
@@ -48,7 +49,13 @@ export default function useCharacters({
       }
 
       setLoading(true);
-      const body = await getApiResponse<ISwapiCharactersResponse>(request);
+      const body = await getApiResponse<ISwapiCharactersResponse>(
+        request,
+        controller
+      );
+      if (controller.signal.aborted) {
+        return;
+      }
       if (body) {
         setCharacters(
           body.results.map(({ name, url }) => {
@@ -65,6 +72,10 @@ export default function useCharacters({
       }
       setLoading(false);
     })();
+
+    return () => {
+      controller.abort();
+    };
   }, [setErrorApi, page, setMaxPage, search, setLoading]);
 
   return { characters };

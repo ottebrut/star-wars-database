@@ -18,3 +18,12 @@ export default function withErrorApi<T>(
     return <View {...props} setErrorApi={setErrorApi} />;
   };
 }
+
+// return (
+//   <>
+//     {errorApi && <ErrorMessage />}
+//     <div className={styles.content}>
+//       <View {...props} setErrorApi={setErrorApi} />
+//     </div>
+//   </>
+// );
