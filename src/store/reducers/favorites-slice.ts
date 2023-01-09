@@ -1,5 +1,6 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { ICharacter } from "src/models/character";
-import favoritesActionTypes from "src/store/constants/favorites-action-types";
 import { getLocalStorageData } from "src/utils/local-storage";
 
 export interface IFavoritesState {
@@ -17,18 +18,12 @@ const initialState: IFavoritesState = getLocalStorageData(
   favoriteCharacters: [],
 };
 
-interface IFavoritesAction {
-  type: keyof typeof favoritesActionTypes;
-  payload: unknown;
-}
-
-export const favoritesReducer = (
-  state = initialState,
-  action?: IFavoritesAction
-): IFavoritesState => {
-  switch (action?.type) {
-    case favoritesActionTypes.ADD_CHARACTER_TO_FAVORITE: {
-      const character = action.payload as ICharacter;
+export const favoritesSlice = createSlice({
+  name: "favorites",
+  initialState,
+  reducers: {
+    addCharacterToFavorites: (state, action: PayloadAction<ICharacter>) => {
+      const character = action.payload;
       const updatedCharacters = state.favoriteCharacters.filter(
         (fC) => fC.id !== character.id
       );
@@ -37,9 +32,9 @@ export const favoritesReducer = (
         ...state,
         favoriteCharacters: updatedCharacters,
       };
-    }
-    case favoritesActionTypes.REMOVE_CHARACTER_FROM_FAVORITE: {
-      const characterId = action.payload as string;
+    },
+    removeCharacterFromFavorites: (state, action: PayloadAction<string>) => {
+      const characterId = action.payload;
       const updatedCharacters = state.favoriteCharacters.filter(
         (fC) => fC.id !== characterId
       );
@@ -47,8 +42,9 @@ export const favoritesReducer = (
         ...state,
         favoriteCharacters: updatedCharacters,
       };
-    }
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
+
+export const { addCharacterToFavorites, removeCharacterFromFavorites } =
+  favoritesSlice.actions;

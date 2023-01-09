@@ -1,16 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { ReducersStore } from "src/store/reducers";
+import { useAppSelector } from "src/hooks/redux";
 
 import bookmarkIcon from "./images/bookmark.svg";
 import styles from "./styles.module.scss";
 
 const FavoritesBookmark: React.FC = () => {
-  const store = useSelector<ReducersStore, ReducersStore["favoritesReducer"]>(
-    (state) => state.favoritesReducer
-  );
+  const store = useAppSelector((state) => state.favorites);
   const count = store.favoriteCharacters.length;
 
   return (

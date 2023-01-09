@@ -1,14 +1,7 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 
-import {
-  favoritesReducer,
-  IFavoritesState,
-} from "src/store/reducers/favorites-reducer";
-
-export interface ReducersStore {
-  favoritesReducer: IFavoritesState;
-}
+import { favoritesSlice } from "src/store/reducers/favorites-slice";
 
 export default combineReducers({
-  favoritesReducer,
+  favorites: favoritesSlice.reducer,
 });

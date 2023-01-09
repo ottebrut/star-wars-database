@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 
+import { useAppDispatch, useAppSelector } from "src/hooks/redux";
 import { ICharacter } from "src/models/character";
 import {
   addCharacterToFavorites,
   removeCharacterFromFavorites,
-} from "src/store/actions";
-import { ReducersStore } from "src/store/reducers";
+} from "src/store/reducers/favorites-slice";
 
 import favoriteIcon from "./images/favorite.svg";
 import favoriteFillIcon from "./images/favorite-fill.svg";
@@ -17,13 +16,11 @@ interface CharacterPhotoProps {
 }
 
 const CharacterPhoto: React.FC<CharacterPhotoProps> = ({ character }) => {
-  const store = useSelector<ReducersStore, ReducersStore["favoritesReducer"]>(
-    (state) => state.favoritesReducer
-  );
+  const store = useAppSelector((state) => state.favorites);
   const isFavorite = store.favoriteCharacters.some(
     (fC) => fC.id === character?.id
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const toggleFavorite = () => {
     if (isFavorite) {

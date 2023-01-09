@@ -1,17 +1,18 @@
-import { applyMiddleware, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 
 import { setLocalStorageData } from "src/utils/local-storage";
 import rootReducer from "./reducers";
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 store.subscribe(() => {
-  setLocalStorageData("favoritesReducer", store.getState().favoritesReducer);
+  setLocalStorageData("favoritesReducer", store.getState().favorites);
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = typeof store;
+export type AppDispatch = AppStore["dispatch"];
 
 export default store;

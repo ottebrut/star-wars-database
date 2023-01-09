@@ -1,15 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import CharactersListBig from "src/components/characters-list-big";
-import { ReducersStore } from "src/store/reducers";
+import { useAppSelector } from "src/hooks/redux";
 
 import styles from "./styles.module.scss";
 
 const FavoritesPage: React.FC = () => {
-  const store = useSelector<ReducersStore, ReducersStore["favoritesReducer"]>(
-    (state) => state.favoritesReducer
-  );
+  const store = useAppSelector((state) => state.favorites);
   const characters = store.favoriteCharacters;
 
   return (
