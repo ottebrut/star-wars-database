@@ -19,6 +19,8 @@ interface UseCharactersProps extends WithErrorApiViewProps {
   setMaxPage?: Dispatch<SetStateAction<number>>;
 
   search?: string;
+
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function useCharacters({
@@ -26,6 +28,7 @@ export default function useCharacters({
   page,
   setMaxPage,
   search,
+  setLoading,
 }: UseCharactersProps): {
   characters: ICharacters | null;
 } {
@@ -44,6 +47,7 @@ export default function useCharacters({
         }
       }
 
+      setLoading(true);
       const body = await getApiResponse<ISwapiCharactersResponse>(request);
       if (body) {
         setCharacters(
@@ -59,8 +63,9 @@ export default function useCharacters({
       } else {
         setErrorApi(true);
       }
+      setLoading(false);
     })();
-  }, [setErrorApi, page, setMaxPage, search]);
+  }, [setErrorApi, page, setMaxPage, search, setLoading]);
 
   return { characters };
 }

@@ -7,13 +7,13 @@ import { ICharacters } from "src/models/character";
 import styles from "src/components/characters-list-small/styles.module.scss";
 
 interface CharactersListSmallProps {
-  characters: ICharacters | null;
+  characters: ICharacters;
 }
 
 const CharactersListSmall: React.FC<CharactersListSmallProps> = ({
   characters,
 }) => {
-  if (characters?.length) {
+  if (characters.length) {
     return (
       <ul className={styles.list}>
         {characters.map((character) => (

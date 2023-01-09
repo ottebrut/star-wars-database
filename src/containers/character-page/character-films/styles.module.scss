@@ -1,6 +1,11 @@
 .wrapper {
+  min-width: 200px;
   margin-left: var(--spacing-large);
   padding: var(--spacing-medium) 0;
+}
+
+.list {
+  height: 100%;
 }
 
 .item {

@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { debounce } from "lodash";
 
 import CharactersListSmall from "src/components/characters-list-small";
+import Loader from "src/components/loader";
 import UiInput from "src/components/ui/ui-input";
 import withErrorApi, {
   WithErrorApiViewProps,
@@ -10,13 +11,13 @@ import useCharacters from "src/hooks/use-characters";
 
 import styles from "./styles.module.scss";
 
-interface SearchPageProps extends WithErrorApiViewProps {}
-
-const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
+const SearchPage: React.FC<WithErrorApiViewProps> = ({ setErrorApi }) => {
   const [searchValue, setSearchValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const { characters } = useCharacters({
     setErrorApi,
     search: searchValue,
+    setLoading,
   });
 
   const updateSearchValue = useCallback(
@@ -43,7 +44,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ setErrorApi }) => {
         onChange={handleInputChange}
         placeholder="Enter character's name"
       />
-      <CharactersListSmall characters={characters} />
+      <Loader loading={loading} minHeight="100px">
+        {characters && <CharactersListSmall characters={characters} />}
+      </Loader>
     </>
   );
 };

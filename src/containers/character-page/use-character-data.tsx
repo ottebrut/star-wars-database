@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { ICharacterInfo } from "src/containers/character-page/models";
 import { WithErrorApiViewProps } from "src/hoc-helpers/with-error-api";
@@ -8,11 +8,13 @@ import { getApiResponse } from "src/utils/get-api-response";
 
 interface UsePersonDataProps extends WithErrorApiViewProps {
   id: string;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function useCharacterData({
   id,
   setErrorApi,
+  setLoading,
 }: UsePersonDataProps): {
   characterInfo: ICharacterInfo | null;
   characterName: string | null;
@@ -26,6 +28,7 @@ export default function useCharacterData({
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const res = await getApiResponse<ISwapiCharacterResponse>(
         SWAPI_CHARACTER(id!)
       );
@@ -48,8 +51,9 @@ export default function useCharacterData({
       } else {
         setErrorApi(true);
       }
+      setLoading(false);
     })();
-  }, [id, setErrorApi]);
+  }, [id, setErrorApi, setLoading]);
 
   return {
     characterInfo,
